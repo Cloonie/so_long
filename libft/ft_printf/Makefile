@@ -5,33 +5,34 @@
 #                                                     +:+ +:+         +:+      #
 #    By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/08/11 15:21:36 by mliew             #+#    #+#              #
-#    Updated: 2022/08/15 21:52:08 by mliew            ###   ########.fr        #
+#    Created: 2022/06/08 17:35:32 by mliew             #+#    #+#              #
+#    Updated: 2022/07/18 15:14:37 by mliew            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	so_long
-OBJ		=	main.c
-CC		=	gcc
-CFLAGS	=	-Wall -Wextra -Werror
+NAME	= libftprintf.a
+SRC		= printf putchar putstr putnbr puthex putpointer putunsign len_hex
+SRCS	= $(addprefix ft_, $(addsuffix .c, $(SRC)))
+OBJS	= $(SRCS:.c=.o)
+CC		= gcc
+CFLAGS	= -Wall -Wextra -Werror -I ./
+AR		= ar rcs
+RM		= rm -f
 
-all: libft $(NAME)
+all: $(NAME)
 
 %.o: %.c
-	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
+	$(CC) $(CFLAGS) -c $< -o $@
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) so_long.a -lmlx -framework OpenGL -framework AppKit -o $(NAME) -fsanitize=address -g3
+$(NAME): $(OBJS)
+	$(AR) $(NAME) $(OBJS)
 
-libft:
-	make -C libft
-	cp libft/libft.a .
-	mv libft.a so_long.a
+clean:
+	$(RM) $(OBJS)
 
-fclean:
-	rm -rf $(NAME)
-	make fclean -C libft
+fclean: clean
+	$(RM) $(NAME)
 
 re: fclean all
 
-.PHONY: libft $(NAME)
+.PHONY: all clean fclean re $(NAME)

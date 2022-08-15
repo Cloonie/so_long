@@ -1,44 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/15 22:03:37 by mliew            ###   ########.fr       */
+/*   Created: 2022/06/08 17:36:35 by mliew             #+#    #+#             */
+/*   Updated: 2022/06/24 19:34:03 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-# include <mlx.h>
-# include <stdio.h>
+# include <stdarg.h>
+# include <unistd.h>
 # include <stdlib.h>
-# include <fcntl.h>
-# include "libft/libft.h"
+# include <stdio.h>
 
-# define ESC 53
-# define W 13
-# define A 0
-# define S 1
-# define D 2
+// main ft_printf function
+int	ft_printf(const char *str, ...);
 
-typedef struct s_vars {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	char	*mc_path;
-	char	*bg_path;
-	int		img_width;
-	int		img_height;
-	int		x;
-	int		y;
-	int		bg_x;
-	int		bg_y;
-	int		mapx;
-	int		mapy;
-}	t_vars;
+// conversions: cspdiuxX%
+int	ft_putchar(char c);
+int	ft_putstr(char *str);
+int	ft_putnbr(int n);
+int	ft_puthex(unsigned int n, const char fmt);
+int	ft_putpointer(unsigned long n);
+int	ft_putunsign(unsigned int n);
+int	len_hex(unsigned long n);
 
 #endif
