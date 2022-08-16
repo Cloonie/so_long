@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/15 22:03:37 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/16 21:40:35 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,17 @@ typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 	void	*img;
-	char	*mc_path;
-	char	*bg_path;
+	char	*path;
 	int		img_width;
 	int		img_height;
-	int		x;
-	int		y;
+	int		p_x;
+	int		p_y;
 	int		bg_x;
 	int		bg_y;
 	int		mapx;
 	int		mapy;
+	int		treex;
+	int		treey;
 }	t_vars;
 
 #endif

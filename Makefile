@@ -6,7 +6,7 @@
 #    By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/11 15:21:36 by mliew             #+#    #+#              #
-#    Updated: 2022/08/15 21:52:08 by mliew            ###   ########.fr        #
+#    Updated: 2022/08/16 16:52:13 by mliew            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ all: libft $(NAME)
 	$(CC) -Wall -Wextra -Werror -Imlx -c $< -o $@
 
 $(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $(OBJ) so_long.a -lmlx -framework OpenGL -framework AppKit -o $(NAME) -fsanitize=address -g3
+	$(CC) $(CFLAGS) $(OBJ) so_long.a -lmlx -framework OpenGL -framework AppKit -o $(NAME) #-fsanitize=address -g3
 
 libft:
 	make -C libft
@@ -33,5 +33,3 @@ fclean:
 	make fclean -C libft
 
 re: fclean all
-
-.PHONY: libft $(NAME)
