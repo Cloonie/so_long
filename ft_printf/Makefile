@@ -6,7 +6,7 @@
 #    By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/08 17:35:32 by mliew             #+#    #+#              #
-#    Updated: 2022/07/18 15:14:37 by mliew            ###   ########.fr        #
+#    Updated: 2022/08/19 18:54:54 by mliew            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,5 +34,3 @@ fclean: clean
 	$(RM) $(NAME)
 
 re: fclean all
-
-.PHONY: all clean fclean re $(NAME)

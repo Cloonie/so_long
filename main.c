@@ -6,36 +6,54 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/17 22:06:02 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/19 19:36:15 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+int	terminate(t_vars *vars, char *msg)
+{
+	int i;
+
+	i = 0;
+	(void)vars;
+	if (msg)
+		ft_printf("%s\n", msg);
+	while (vars->map[i])
+		free(vars->map[i++]);
+	free(vars->map);
+	// system("leaks so_long");
+	exit (0);
+}
+
 int	key_loop(int keycode, t_vars *vars)
 {
 	if (keycode == ESC)
+		terminate(vars, "Program closed by ESC.");
+	if (keycode == A && vars->map[vars->p_y][vars->p_x - 1] != '1')
 	{
-		system("leaks so_long");
-		exit(0);
-	}
-	if (keycode == A && vars->p_x != 0)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->p_x * 64, vars->p_y * 64);
 		vars->p_x -= 1;
-	if (keycode == D && vars->p_x != vars->mapx - 1)
+	}
+	if (keycode == D && vars->map[vars->p_y][vars->p_x + 1] != '1')
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->p_x * 64, vars->p_y * 64);
 		vars->p_x += 1;
-	if (keycode == W && vars->p_y != 0)
+	}
+	if (keycode == W && vars->map[vars->p_y - 1][vars->p_x] != '1')
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->p_x * 64, vars->p_y * 64);
 		vars->p_y -= 1;
-	if (keycode == S && vars->p_y != vars->mapy - 1)
+	}
+	if (keycode == S && vars->map[vars->p_y + 1][vars->p_x] != '1')
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->p_x * 64, vars->p_y * 64);
 		vars->p_y += 1;
+	}
 	return (0);
 }
 
-int	closewin(t_vars *vars)
-{
-	(void)vars;
-	system("leaks so_long");
-	exit (0);
-}
 
 void	read_map(char *av, t_vars *vars)
 {	
@@ -57,14 +75,16 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
+		vars.mlx = mlx_init();
 		initialize_vars(&vars);
 		read_map(av[1], &vars);
 		check_map(&vars);
-		vars.mlx = mlx_init();
-		vars.win = mlx_new_window(vars.mlx, vars.mapx * 64, vars.mapy * 64, "so_long");
-		mlx_loop_hook(vars.mlx, putimg, &vars);
+		vars.win = mlx_new_window(vars.mlx, vars.map_x * 64, vars.map_y * 64, "so_long");
+		putbg(&vars);
+		puttree(&vars);
+		mlx_loop_hook(vars.mlx, putplayer, &vars);
 		mlx_key_hook(vars.win, key_loop, &vars);
-		mlx_hook(vars.win, 17, 0, closewin, &vars);
+		mlx_hook(vars.win, 17, 0, terminate, &vars);
 		mlx_loop(vars.mlx);
 	}
 	else

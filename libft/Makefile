@@ -6,7 +6,7 @@
 #    By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/23 17:58:41 by mliew             #+#    #+#              #
-#    Updated: 2022/08/15 18:36:04 by mliew            ###   ########.fr        #
+#    Updated: 2022/08/19 19:27:01 by mliew            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,7 +33,7 @@ CC			=	gcc
 RM			=	rm -f
 AR			=	ar rcs
 
-all: printf $(NAME) bonus
+all: $(NAME) bonus
 
 $(NAME): $(OBJS)
 	$(AR) $(NAME) $(OBJS)
@@ -41,22 +41,13 @@ $(NAME): $(OBJS)
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-printf:
-	make -C ft_printf
-	cp ft_printf/libftprintf.a .
-	mv libftprintf.a $(NAME)
-
 bonus: $(OBJSB)
 	$(AR) $(NAME) $(OBJSB)
 
 clean:
 	$(RM) $(OBJS) $(OBJSB)
-	make clean -C ft_printf
 
 fclean: clean
 	$(RM) $(NAME)
-	make fclean -C ft_printf
-		
-re: fclean all
 
-.PHONY: $(NAME) all clean fclean re bonus printf
+re: fclean all
