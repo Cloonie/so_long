@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/19 19:36:15 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/19 20:08:06 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	terminate(t_vars *vars, char *msg)
 	while (vars->map[i])
 		free(vars->map[i++]);
 	free(vars->map);
-	// system("leaks so_long");
+	system("leaks so_long");
 	exit (0);
 }
 
@@ -88,5 +88,5 @@ int	main(int ac, char **av)
 		mlx_loop(vars.mlx);
 	}
 	else
-		write(1, "Wrong number of arguments", 25);
+		write(1, "!!./so_long [MAP]!!", 19);
 }

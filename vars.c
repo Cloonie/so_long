@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/19 19:47:12 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/19 20:06:07 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,13 @@ void	initialize_vars(t_vars *vars)
 // wall
 	vars->wall_path = "sprites/tree.xpm";
 	vars->wall_img = mlx_xpm_file_to_image(vars->mlx, vars->wall_path, &vars->img_width, &vars->img_height);
+
+// collectables
+	vars->col_path = "sprites/pokeball.xpm";
+	vars->col_img = mlx_xpm_file_to_image(vars->mlx, vars->col_path, &vars->img_width, &vars->img_height);
+
+// exit
+	vars->exit_path = "sprites/exit.xpm";
+	vars->exit_img = mlx_xpm_file_to_image(vars->mlx, vars->exit_path, &vars->img_width, &vars->img_height);
+
 }

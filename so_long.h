@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/19 19:46:39 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/19 20:05:36 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,15 @@ typedef struct s_vars {
 // wall
 	char	*wall_path;
 	void	*wall_img;
+
+// collectables
+	char	*col_path;
+	void	*col_img;
+
+// exit
+	char	*exit_path;
+	void	*exit_img;
+
 }	t_vars;
 
 void	initialize_vars(t_vars *vars);

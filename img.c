@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/19 19:46:44 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/19 20:07:07 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ void	puttree(t_vars *vars)
 		{
 			if (vars->map[yy][xx] == '1')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall_img, xx * 64, yy * 64);
+			else if (vars->map[yy][xx] == 'C')
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->col_img, xx * 64, yy * 64);
+			else if (vars->map[yy][xx] == 'E')
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img, xx * 64, yy * 64);
 			xx++;
 		}
 		xx = 0;
