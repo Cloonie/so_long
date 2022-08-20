@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/19 20:07:07 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/20 17:50:21 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	putplayer(t_vars *vars)
 	return (0);
 }
 
-void	puttree(t_vars *vars)
+void	putstaticimg(t_vars *vars)
 {
 	int yy;
 	int xx;
@@ -80,7 +80,15 @@ void	puttree(t_vars *vars)
 			if (vars->map[yy][xx] == '1')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall_img, xx * 64, yy * 64);
 			else if (vars->map[yy][xx] == 'C')
+			{
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->col_img, xx * 64, yy * 64);
+				printf("pokeballs:%d\n", vars->col_count += 1);
+				// if (vars->map[yy][xx])
+				// {
+				// 	vars->col_pos[yy][xx] = vars->map[yy][xx];
+				// 	printf("colposx:%d, colposy:%d\n", xx , yy);
+				// }
+			}
 			else if (vars->map[yy][xx] == 'E')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img, xx * 64, yy * 64);
 			xx++;
@@ -89,3 +97,23 @@ void	puttree(t_vars *vars)
 		yy++;
 	}
 }
+
+void	init_col(t_vars *vars, int x, int y)
+{
+	while (vars->map[y])
+	{
+		while (vars->col_pos[y][x])
+		{
+			vars->col_pos[y][x] = vars->map[y][x];
+			printf("colposx:%d, colposy:%d\n", x , y);
+			x++;
+		}
+		y++;
+	}
+}
+
+// void	check_col(t_vars *vars, int x, int y)
+// {
+// 	if(vars->col_pos[y][x] == vars->map[vars->p_y][vars->p_x]);
+// 		vars->col_count -= 1;
+// }

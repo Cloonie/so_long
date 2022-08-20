@@ -11,6 +11,7 @@
 
 # Executables
 *.out
+so_long
 
 # Temp files
 *.swp

@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/19 20:05:36 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/20 17:38:37 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_vars {
 	int		p_x;
 	int		p_y;
 	int		p_check;
+	int		m_count;
 
 // background
 	char	*bg_path;
@@ -58,6 +59,8 @@ typedef struct s_vars {
 // collectables
 	char	*col_path;
 	void	*col_img;
+	int		col_count;
+	char	**col_pos;
 
 // exit
 	char	*exit_path;
@@ -69,7 +72,8 @@ void	initialize_vars(t_vars *vars);
 void	check_map(t_vars *vars);
 int		putplayer(t_vars *vars);
 void	putbg(t_vars *vars);
-void	puttree(t_vars *vars);
+void	putstaticimg(t_vars *vars);
 int		terminate(t_vars *vars, char *msg);
+void	init_col(t_vars *vars, int x, int y);
 
 #endif
