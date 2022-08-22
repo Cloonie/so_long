@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/20 17:37:06 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/22 19:10:53 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	terminate(t_vars *vars, char *msg)
 	while (vars->map[i])
 		free(vars->map[i++]);
 	free(vars->map);
-	system("leaks so_long");
+	// system("leaks so_long");
 	exit (0);
 }
 
@@ -34,32 +34,35 @@ int	key_loop(int keycode, t_vars *vars)
 	if (keycode == A && vars->map[vars->p_y][vars->p_x - 1] != '1')
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->p_x * 64, vars->p_y * 64);
-		vars->p_x -= 1;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->pl_img, --vars->p_x * 64, vars->p_y * 64);
 		vars->m_count++;
 	}
 	else if (keycode == D && vars->map[vars->p_y][vars->p_x + 1] != '1')
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->p_x * 64, vars->p_y * 64);
-		vars->p_x += 1;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->pr_img, ++vars->p_x * 64, vars->p_y * 64);
 		vars->m_count++;
 	}
 	else if (keycode == W && vars->map[vars->p_y - 1][vars->p_x] != '1')
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->p_x * 64, vars->p_y * 64);
-		vars->p_y -= 1;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->pu_img, vars->p_x * 64, --vars->p_y * 64);
 		vars->m_count++;
 	}
 	else if (keycode == S && vars->map[vars->p_y + 1][vars->p_x] != '1')
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->p_x * 64, vars->p_y * 64);
-		vars->p_y += 1;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->pd_img, vars->p_x * 64, ++vars->p_y * 64);
 		vars->m_count++;
 	}
+	if (vars->map[vars->p_y][vars->p_x] == vars->map[vars->exit_y][vars->exit_x])
+		terminate(vars, "You WON!!!");
+	printf("keylooping\n");
 	return (0);
 }
 
 
-void	read_map(char *av, t_vars *vars)
+void	malloc_mapsize(char *av, t_vars *vars)
 {	
 	char	*buf;
 	int		fd;
@@ -81,12 +84,12 @@ int	main(int ac, char **av)
 	{
 		vars.mlx = mlx_init();
 		initialize_vars(&vars);
-		read_map(av[1], &vars);
+		malloc_mapsize(av[1], &vars);
 		check_map(&vars);
 		vars.win = mlx_new_window(vars.mlx, vars.map_x * 64, vars.map_y * 64, "so_long");
 		putbg(&vars);
 		putstaticimg(&vars);
-		mlx_loop_hook(vars.mlx, putplayer, &vars);
+		// mlx_loop_hook(vars.mlx, putplayer, &vars);
 		mlx_key_hook(vars.win, key_loop, &vars);
 		mlx_hook(vars.win, 17, 0, terminate, &vars);
 		mlx_loop(vars.mlx);

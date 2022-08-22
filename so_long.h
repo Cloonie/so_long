@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/20 17:38:37 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/22 18:45:54 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,14 @@ typedef struct s_vars {
 	int		map_y;
 
 // player
-	char	*p_path;
-	void	*p_img;
+	char	*pu_path;
+	void	*pu_img;
+	char	*pd_path;
+	void	*pd_img;
+	char	*pl_path;
+	void	*pl_img;
+	char	*pr_path;
+	void	*pr_img;
 	int		p_x;
 	int		p_y;
 	int		p_check;
@@ -65,6 +71,8 @@ typedef struct s_vars {
 // exit
 	char	*exit_path;
 	void	*exit_img;
+	int		exit_x;
+	int		exit_y;
 
 }	t_vars;
 
