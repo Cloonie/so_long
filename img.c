@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/23 17:30:07 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/23 18:56:57 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,27 +46,37 @@ void	check_mapsize_chars(t_vars *vars)
 	}
 }
 
-void	putbg(t_vars *vars)
+void	print_bg(t_vars *vars)
 {
 	while (vars->bg_y < vars->map_y * 64)
 	{
 		vars->bg_x = 0;
 		while (vars->bg_x < vars->map_x * 64)
 		{
-			mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img, vars->bg_x, vars->bg_y);
+			mlx_put_image_to_window(vars->mlx, vars->win,
+				vars->bg_img, vars->bg_x, vars->bg_y);
 			vars->bg_x += 64;
 		}
 		vars->bg_y += 64;
 	}
 }
 
-int	putexit(t_vars *vars)
+int	exit_condition(t_vars *vars)
 {
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img, vars->exit_x * 64, vars->exit_y * 64);
+	if (vars->map[vars->p_y][vars->p_x] == 'C')
+	{
+		vars->col_collect++;
+		vars->map[vars->p_y][vars->p_x] = '0';
+	}
+	if (vars->map[vars->p_y][vars->p_x] == 'E' &&
+			vars->col_collect == vars->col_count)
+		terminate(vars, "You WON!!!");
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img,
+		vars->exit_x * 64, vars->exit_y * 64);
 	return (0);
 }
 
-void	putstaticimg(t_vars *vars)
+void	print_staticimg(t_vars *vars)
 {
 	int	yy;
 	int	xx;
