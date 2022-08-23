@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/22 19:10:53 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/23 17:18:35 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	terminate(t_vars *vars, char *msg)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	(void)vars;
@@ -55,12 +55,15 @@ int	key_loop(int keycode, t_vars *vars)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->pd_img, vars->p_x * 64, ++vars->p_y * 64);
 		vars->m_count++;
 	}
-	if (vars->map[vars->p_y][vars->p_x] == vars->map[vars->exit_y][vars->exit_x])
+	if (vars->map[vars->p_y][vars->p_x] == 'C')
+	{
+		printf("colcollect:%d\n", vars->col_collect++);
+		vars->map[vars->p_y][vars->p_x] = '0';
+	}
+	if (vars->map[vars->p_y][vars->p_x] == 'E' && vars->col_collect == vars->col_count)
 		terminate(vars, "You WON!!!");
-	printf("keylooping\n");
 	return (0);
 }
-
 
 void	malloc_mapsize(char *av, t_vars *vars)
 {	
@@ -85,11 +88,12 @@ int	main(int ac, char **av)
 		vars.mlx = mlx_init();
 		initialize_vars(&vars);
 		malloc_mapsize(av[1], &vars);
-		check_map(&vars);
-		vars.win = mlx_new_window(vars.mlx, vars.map_x * 64, vars.map_y * 64, "so_long");
+		check_mapsize_chars(&vars);
+		vars.win = mlx_new_window(vars.mlx, vars.map_x * 64,
+				vars.map_y * 64, "so_long");
+		mlx_loop_hook(vars.mlx, putexit, &vars);
 		putbg(&vars);
 		putstaticimg(&vars);
-		// mlx_loop_hook(vars.mlx, putplayer, &vars);
 		mlx_key_hook(vars.win, key_loop, &vars);
 		mlx_hook(vars.win, 17, 0, terminate, &vars);
 		mlx_loop(vars.mlx);

@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/22 19:12:58 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/23 17:31:04 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,15 @@ void	initialize_vars(t_vars *vars)
 	vars->bg_y = 0;
 
 // player
-	vars->pl_path = "sprites/pikachu_left.xpm";
-	vars->pl_img = mlx_xpm_file_to_image(vars->mlx, vars->pl_path, &vars->img_width, &vars->img_height);
-	vars->pd_path = "sprites/pikachu_down.xpm";
-	vars->pd_img = mlx_xpm_file_to_image(vars->mlx, vars->pd_path, &vars->img_width, &vars->img_height);
-	vars->pu_path = "sprites/pikachu_up.xpm";
-	vars->pu_img = mlx_xpm_file_to_image(vars->mlx, vars->pu_path, &vars->img_width, &vars->img_height);
-	vars->pr_path = "sprites/pikachu_right.xpm";
-	vars->pr_img = mlx_xpm_file_to_image(vars->mlx, vars->pr_path, &vars->img_width, &vars->img_height);
-	vars->p_check = 0;
+	vars->path = "sprites/pikachu_up.xpm";
+	vars->pu_img = mlx_xpm_file_to_image(vars->mlx, vars->path, &vars->img_width, &vars->img_height);
+	vars->path = "sprites/pikachu_down.xpm";
+	vars->pd_img = mlx_xpm_file_to_image(vars->mlx, vars->path, &vars->img_width, &vars->img_height);
+	vars->path = "sprites/pikachu_left.xpm";
+	vars->pl_img = mlx_xpm_file_to_image(vars->mlx, vars->path, &vars->img_width, &vars->img_height);
+	vars->path = "sprites/pikachu_right.xpm";
+	vars->pr_img = mlx_xpm_file_to_image(vars->mlx, vars->path, &vars->img_width, &vars->img_height);
+	vars->p_x = 0;
 	vars->m_count = 0;
 
 // wall
@@ -48,12 +48,11 @@ void	initialize_vars(t_vars *vars)
 	vars->col_path = "sprites/pokeball.xpm";
 	vars->col_img = mlx_xpm_file_to_image(vars->mlx, vars->col_path, &vars->img_width, &vars->img_height);
 	vars->col_count = 0;
-	vars->col_pos = 0;
+	vars->col_collect = 0;
 
 // exit
 	vars->exit_path = "sprites/exit.xpm";
 	vars->exit_img = mlx_xpm_file_to_image(vars->mlx, vars->exit_path, &vars->img_width, &vars->img_height);
 	vars->exit_x = 0;
-	vars->exit_y = 0;
 
 }

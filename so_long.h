@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/22 18:45:54 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/23 17:32:41 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,10 @@ typedef struct s_vars {
 	int		map_y;
 
 // player
-	char	*pu_path;
+	char	*path;
 	void	*pu_img;
-	char	*pd_path;
-	void	*pd_img;
-	char	*pl_path;
-	void	*pl_img;
-	char	*pr_path;
+	void	*pd_img;;
+	void	*pl_img;;
 	void	*pr_img;
 	int		p_x;
 	int		p_y;
@@ -66,7 +63,7 @@ typedef struct s_vars {
 	char	*col_path;
 	void	*col_img;
 	int		col_count;
-	char	**col_pos;
+	int		col_collect;
 
 // exit
 	char	*exit_path;
@@ -77,11 +74,13 @@ typedef struct s_vars {
 }	t_vars;
 
 void	initialize_vars(t_vars *vars);
-void	check_map(t_vars *vars);
-int		putplayer(t_vars *vars);
+void	malloc_mapsize(char *av, t_vars *vars);
+void	check_mapsize_chars(t_vars *vars);
 void	putbg(t_vars *vars);
 void	putstaticimg(t_vars *vars);
+int		putexit(t_vars *vars);
 int		terminate(t_vars *vars, char *msg);
 void	init_col(t_vars *vars, int x, int y);
 
+// int		putplayer(t_vars *vars);
 #endif
