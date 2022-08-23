@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/23 18:55:26 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/23 21:55:34 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	init_xpm(t_vars *vars)
 			&vars->img_width, &vars->img_height);
 	vars->wall_img = mlx_xpm_file_to_image(vars->mlx, "sprites/tree.xpm",
 			&vars->img_width, &vars->img_height);
-	vars->col_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pokeball.xpm",
+	vars->col_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pokeballsmall.xpm",
 			&vars->img_width, &vars->img_height);
 	vars->exit_img = mlx_xpm_file_to_image(vars->mlx, "sprites/exit.xpm",
 			&vars->img_width, &vars->img_height);

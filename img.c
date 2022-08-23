@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/23 18:56:57 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/23 21:29:10 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ void	check_mapsize_chars(t_vars *vars)
 		vars->map_x = 0;
 		while (vars->map[vars->map_y][vars->map_x])
 		{
-			if (vars->map[vars->map_y][vars->map_x] == 'C')
-				vars->map_x++;
-			else if (vars->map[vars->map_y][vars->map_x] == '1')
-				vars->map_x++;
-			else if (vars->map[vars->map_y][vars->map_x] == '0')
-				vars->map_x++;
+			if (vars->map[vars->map_y][vars->map_x] == '0' ||
+				vars->map[vars->map_y][vars->map_x] == '1' ||
+				vars->map[vars->map_y][vars->map_x] == 'C')
+					vars->map_x++;
 			else if (vars->map[vars->map_y][vars->map_x] == 'E'
 					&& vars->exit_x == 0)
 			{
