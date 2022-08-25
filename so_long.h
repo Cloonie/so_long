@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/23 21:23:02 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/25 15:52:49 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ typedef struct s_vars {
 	void	*win;
 	int		img_width;
 	int		img_height;
+	int		xx;
+	int		yy;
 
 	char	**map;
 	int		map_x;
@@ -63,6 +65,7 @@ void	init_vars(t_vars *vars);
 void	init_xpm(t_vars *vars);
 void	malloc_map(char *av, t_vars *vars);
 void	check_mapsize_chars(t_vars *vars);
+void	check_walls(t_vars *vars);
 void	print_bg(t_vars *vars);
 void	print_staticimg(t_vars *vars);
 void	key_helper(int key, t_vars *vars);

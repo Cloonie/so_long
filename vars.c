@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/23 21:55:34 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/25 14:02:42 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	init_vars(t_vars *vars)
 	vars->col_count = 0;
 	vars->col_collect = 0;
 	vars->exit_x = 0;
+	vars->xx = 0;
+	vars->yy = 0;
 }
 
 void	init_xpm(t_vars *vars)
@@ -40,7 +42,7 @@ void	init_xpm(t_vars *vars)
 			&vars->img_width, &vars->img_height);
 	vars->wall_img = mlx_xpm_file_to_image(vars->mlx, "sprites/tree.xpm",
 			&vars->img_width, &vars->img_height);
-	vars->col_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pokeballsmall.xpm",
+	vars->col_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pokeball.xpm",
 			&vars->img_width, &vars->img_height);
 	vars->exit_img = mlx_xpm_file_to_image(vars->mlx, "sprites/exit.xpm",
 			&vars->img_width, &vars->img_height);
