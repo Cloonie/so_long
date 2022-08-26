@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/25 14:02:42 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/26 14:09:37 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	init_vars(t_vars *vars)
 	vars->img_width = 64;
 	vars->img_height = 64;
 	vars->map_x = 0;
-	vars->bg_x = 0;
-	vars->bg_y = 0;
-	vars->p_x = 0;
 	vars->m_count = 0;
 	vars->col_count = 0;
 	vars->col_collect = 0;
-	vars->exit_x = 0;
 	vars->xx = 0;
 	vars->yy = 0;
+	vars->xxx = 0;
+	vars->yyy = 0;
+	vars->p_check = 1;
+	vars->exit_check = 1;
 }
 
 void	init_xpm(t_vars *vars)

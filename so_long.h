@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/25 15:52:49 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/26 13:53:46 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_vars {
 	int		img_height;
 	int		xx;
 	int		yy;
+	int		xxx;
+	int		yyy;
 
 	char	**map;
 	int		map_x;
@@ -44,6 +46,7 @@ typedef struct s_vars {
 	void	*pr_img;
 	int		p_x;
 	int		p_y;
+	int		p_check;
 	int		m_count;
 
 	void	*bg_img;
@@ -59,6 +62,7 @@ typedef struct s_vars {
 	void	*exit_img;
 	int		exit_x;
 	int		exit_y;
+	int		exit_check;
 }	t_vars;
 
 void	init_vars(t_vars *vars);
@@ -66,7 +70,7 @@ void	init_xpm(t_vars *vars);
 void	malloc_map(char *av, t_vars *vars);
 void	check_mapsize_chars(t_vars *vars);
 void	check_walls(t_vars *vars);
-void	print_bg(t_vars *vars);
+void	print_bgwall(t_vars *vars);
 void	print_staticimg(t_vars *vars);
 void	key_helper(int key, t_vars *vars);
 int		key_loop(int key, t_vars *vars);

@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/25 17:03:12 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/26 14:14:48 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@ void	check_mapsize_chars(t_vars *vars)
 				vars->map[vars->map_y][vars->map_x] == '1' ||
 				vars->map[vars->map_y][vars->map_x] == 'C')
 					vars->map_x++;
-			else if (vars->map[vars->map_y][vars->map_x] == 'E'
-					&& vars->exit_x == 0)
-			{
-				vars->exit_x = vars->map_x;
-				vars->exit_y = vars->map_y;
-				vars->map_x++;
-			}
 			else if (vars->map[vars->map_y][vars->map_x] == 'P'
-					&& vars->p_x == 0)
+					&& vars->p_check > 0)
 			{
-				vars->p_x = vars->map_x;
-				vars->p_y = vars->map_y;
 				vars->map_x++;
+				vars->p_check = -1;
+			}
+			else if (vars->map[vars->map_y][vars->map_x] == 'E'
+					&& vars->exit_check > 0)
+			{
+				vars->map_x++;
+				vars->exit_check = -1;
 			}
 			else
 				terminate(vars, "Map Error.");
@@ -63,7 +61,6 @@ void	check_walls(t_vars *vars)
 		count--;
 		if (vars->map[0][vars->xx++] != '1')
 			error = 1;
-		printf("%c\n\n\n", vars->map[0][vars->xx++]);
 		// vars->xx = 0;
 		// if (vars->map[vars->map_y][vars->xx++] != '1')
 		// 	error = 1;
@@ -76,18 +73,28 @@ void	check_walls(t_vars *vars)
 		terminate(vars, "Map borders not all wall.");
 }
 
-void	print_bg(t_vars *vars)
+void	print_bgwall(t_vars *vars)
 {
-	while (vars->bg_y < vars->map_y * 64)
+	while (vars->map[vars->yyy])
 	{
-		vars->bg_x = 0;
-		while (vars->bg_x < vars->map_x * 64)
+		while (vars->map[vars->yyy][vars->xxx])
 		{
-			mlx_put_image_to_window(vars->mlx, vars->win,
-				vars->bg_img, vars->bg_x, vars->bg_y);
-			vars->bg_x += 64;
+			if (vars->map[vars->yyy][vars->xxx] == '0' ||
+				vars->map[vars->yyy][vars->xxx] == 'C')
+				mlx_put_image_to_window(vars->mlx, vars->win,
+					vars->bg_img, vars->xxx * 64, vars->yyy * 64);
+			else if (vars->map[vars->yyy][vars->xxx] == '1')
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall_img,
+					vars->xxx * 64, vars->yyy * 64);
+			else if (vars->map[vars->yyy][vars->xxx] == 'E')
+			{
+				vars->exit_y = vars->yyy;
+				vars->exit_x = vars->xxx;
+			}
+			vars->xxx++;
 		}
-		vars->bg_y += 64;
+		vars->xxx = 0;
+		vars->yyy++;
 	}
 }
 
@@ -108,18 +115,17 @@ int	exit_condition(t_vars *vars)
 
 void	print_staticimg(t_vars *vars)
 {
-	vars->xx = 0;
-	vars->yy = 0;
 	while (vars->map[vars->yy])
 	{
 		while (vars->map[vars->yy][vars->xx])
 		{
-			if (vars->map[vars->yy][vars->xx] == '1')
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall_img,
-					vars->xx * 64, vars->yy * 64);
-			else if (vars->map[vars->yy][vars->xx] == 'P')
+			if (vars->map[vars->yy][vars->xx] == 'P')
+			{
+				vars->p_x = vars->xx;
+				vars->p_y = vars->yy;
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->pd_img,
 					vars->p_x * 64, vars->p_y * 64);
+			}
 			else if (vars->map[vars->yy][vars->xx] == 'C')
 			{
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->col_img,
