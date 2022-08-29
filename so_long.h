@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/26 13:53:46 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/29 17:42:03 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ typedef struct s_vars {
 	int		img_height;
 	int		xx;
 	int		yy;
-	int		xxx;
-	int		yyy;
+	int		xend;
+	int		yend;
+	int		error;
 
 	char	**map;
 	int		map_x;

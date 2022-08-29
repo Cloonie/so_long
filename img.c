@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/26 14:14:48 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/29 18:14:59 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,79 +22,69 @@ void	check_mapsize_chars(t_vars *vars)
 			if (vars->map[vars->map_y][vars->map_x] == '0' ||
 				vars->map[vars->map_y][vars->map_x] == '1' ||
 				vars->map[vars->map_y][vars->map_x] == 'C')
-					vars->map_x++;
-			else if (vars->map[vars->map_y][vars->map_x] == 'P'
-					&& vars->p_check > 0)
-			{
-				vars->map_x++;
-				vars->p_check = -1;
-			}
-			else if (vars->map[vars->map_y][vars->map_x] == 'E'
-					&& vars->exit_check > 0)
-			{
-				vars->map_x++;
-				vars->exit_check = -1;
-			}
+					vars->m_count = 0;
+			else if (vars->map[vars->map_y][vars->map_x] == 'P')
+				vars->p_check += 1;
+			else if (vars->map[vars->map_y][vars->map_x] == 'E')
+				vars->exit_check += 1;
 			else
-				terminate(vars, "Map Error.");
+				terminate(vars, "Invalid map character.");
+			vars->map_x++;
 		}
 		vars->map_y++;
 	}
+	if (vars->p_check != 1 || vars->exit_check != 1)
+		terminate(vars, "Player/Exit not found or duplicate.");
 }
 
 void	check_walls(t_vars *vars)
 {
-	int	error;
-	int	count;
-	int	first;
-	int	last;
-	int	next_line;
-
-	first = 0;
-	last = vars->map_x;
-	next_line = 0;
-	error = 0;
-	vars->xx = 0;
-	count = (vars->map_x * 2) + ((vars->map_y - 2) * 2);
-	while (count != 0)
+	vars->yend = vars->map_y - 1;
+	vars->xend = vars->map_x - 1;
+	while (vars->map[vars->yy])
 	{
-		count--;
-		if (vars->map[0][vars->xx++] != '1')
-			error = 1;
-		// vars->xx = 0;
-		// if (vars->map[vars->map_y][vars->xx++] != '1')
-		// 	error = 1;
-		// if (vars->map[first++][0] != '1')
-		// 	error = 1;
-		// if (vars->map[next_line++][last] == '1')
-		// 	error = 1;
+		if (vars->map[0][vars->xx] != '1')
+			vars->error++;
+		if (vars->map[vars->yend][vars->xx] != '1')
+			vars->error++;
+		if (vars->map[vars->yy][0] != '1')
+			vars->error++;
+		if (vars->map[vars->yy][vars->xend] != '1')
+			vars->error++;
+		if (vars->error > 0
+			|| ft_strlen(vars->map[0]) != ft_strlen(vars->map[vars->yy]))
+			terminate(vars, "Wall Error.");
+		if ((vars->xx == vars->xend) && (vars->yy == vars->yend))
+			break ;
+		vars->xx++;
+		vars->yy++;
 	}
-	if (error == 1)
-		terminate(vars, "Map borders not all wall.");
 }
 
 void	print_bgwall(t_vars *vars)
 {
-	while (vars->map[vars->yyy])
+	vars->xx = 0;
+	vars->yy = 0;
+	while (vars->map[vars->yy])
 	{
-		while (vars->map[vars->yyy][vars->xxx])
+		while (vars->map[vars->yy][vars->xx])
 		{
-			if (vars->map[vars->yyy][vars->xxx] == '0' ||
-				vars->map[vars->yyy][vars->xxx] == 'C')
+			if (vars->map[vars->yy][vars->xx] == '0' ||
+				vars->map[vars->yy][vars->xx] == 'C')
 				mlx_put_image_to_window(vars->mlx, vars->win,
-					vars->bg_img, vars->xxx * 64, vars->yyy * 64);
-			else if (vars->map[vars->yyy][vars->xxx] == '1')
+					vars->bg_img, vars->xx * 64, vars->yy * 64);
+			else if (vars->map[vars->yy][vars->xx] == '1')
 				mlx_put_image_to_window(vars->mlx, vars->win, vars->wall_img,
-					vars->xxx * 64, vars->yyy * 64);
-			else if (vars->map[vars->yyy][vars->xxx] == 'E')
+					vars->xx * 64, vars->yy * 64);
+			else if (vars->map[vars->yy][vars->xx] == 'E')
 			{
-				vars->exit_y = vars->yyy;
-				vars->exit_x = vars->xxx;
+				vars->exit_y = vars->yy;
+				vars->exit_x = vars->xx;
 			}
-			vars->xxx++;
+			vars->xx++;
 		}
-		vars->xxx = 0;
-		vars->yyy++;
+		vars->xx = 0;
+		vars->yy++;
 	}
 }
 
@@ -115,6 +105,8 @@ int	exit_condition(t_vars *vars)
 
 void	print_staticimg(t_vars *vars)
 {
+	vars->xx = 0;
+	vars->yy = 0;
 	while (vars->map[vars->yy])
 	{
 		while (vars->map[vars->yy][vars->xx])
