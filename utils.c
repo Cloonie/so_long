@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/29 18:14:59 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/29 21:54:10 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,13 @@ void	check_mapsize_chars(t_vars *vars)
 			else if (vars->map[vars->map_y][vars->map_x] == 'E')
 				vars->exit_check += 1;
 			else
-				terminate(vars, "Invalid map character.");
+				terminate(vars, "Error\nInvalid map character.");
 			vars->map_x++;
 		}
 		vars->map_y++;
 	}
 	if (vars->p_check != 1 || vars->exit_check != 1)
-		terminate(vars, "Player/Exit not found or duplicate.");
+		terminate(vars, "Error\nPlayer/Exit not found or has duplicate.");
 }
 
 void	check_walls(t_vars *vars)
@@ -53,7 +53,7 @@ void	check_walls(t_vars *vars)
 			vars->error++;
 		if (vars->error > 0
 			|| ft_strlen(vars->map[0]) != ft_strlen(vars->map[vars->yy]))
-			terminate(vars, "Wall Error.");
+			terminate(vars, "Error\nWalls not surrounding map.");
 		if ((vars->xx == vars->xend) && (vars->yy == vars->yend))
 			break ;
 		vars->xx++;
@@ -88,21 +88,6 @@ void	print_bgwall(t_vars *vars)
 	}
 }
 
-int	exit_condition(t_vars *vars)
-{
-	if (vars->map[vars->p_y][vars->p_x] == 'C')
-	{
-		vars->col_collect++;
-		vars->map[vars->p_y][vars->p_x] = '0';
-	}
-	if (vars->map[vars->p_y][vars->p_x] == 'E' &&
-			vars->col_collect == vars->col_count)
-		terminate(vars, "You WON!!!");
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img,
-		vars->exit_x * 64, vars->exit_y * 64);
-	return (0);
-}
-
 void	print_staticimg(t_vars *vars)
 {
 	vars->xx = 0;
@@ -129,4 +114,19 @@ void	print_staticimg(t_vars *vars)
 		vars->xx = 0;
 		vars->yy++;
 	}
+}
+
+int	exit_condition(t_vars *vars)
+{
+	if (vars->map[vars->p_y][vars->p_x] == 'C')
+	{
+		vars->col_collect++;
+		vars->map[vars->p_y][vars->p_x] = '0';
+	}
+	if (vars->map[vars->p_y][vars->p_x] == 'E' &&
+			vars->col_collect == vars->col_count)
+		terminate(vars, "Victory!");
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img,
+		vars->exit_x * 64, vars->exit_y * 64);
+	return (0);
 }

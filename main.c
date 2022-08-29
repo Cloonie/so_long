@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/29 17:49:06 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/29 21:54:53 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,5 @@ int	main(int ac, char **av)
 		mlx_loop(vars.mlx);
 	}
 	else
-		write(1, "!! ./so_long [MAP] !!", 21);
+		write(1, "Error\n./so_long [MAP]", 22);
 }

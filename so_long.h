@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/29 17:42:03 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/29 21:50:13 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,9 @@ void	check_mapsize_chars(t_vars *vars);
 void	check_walls(t_vars *vars);
 void	print_bgwall(t_vars *vars);
 void	print_staticimg(t_vars *vars);
+int		exit_condition(t_vars *vars);
 void	key_helper(int key, t_vars *vars);
 int		key_loop(int key, t_vars *vars);
-int		exit_condition(t_vars *vars);
 int		terminate(t_vars *vars, char *msg);
 
 #endif
