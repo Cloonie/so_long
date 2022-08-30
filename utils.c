@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   img.c                                              :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/29 21:54:10 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/30 22:19:43 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,11 @@ void	print_staticimg(t_vars *vars)
 
 int	exit_condition(t_vars *vars)
 {
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->wall_img, 0, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->wall_img, 64, 0);
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->wall_img, 128, 0);
+	mlx_string_put(vars->mlx, vars->win, 0, 0, 0,
+		ft_strjoin("Movement Count:", ft_itoa(vars->m_count)));
 	if (vars->map[vars->p_y][vars->p_x] == 'C')
 	{
 		vars->col_collect++;
