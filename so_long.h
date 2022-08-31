@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/29 21:50:13 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/31 15:54:11 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ typedef struct s_vars {
 	int		yy;
 	int		xend;
 	int		yend;
-	int		error;
+	int		bar;
+	void	*bar_img;
 
 	char	**map;
 	int		map_x;
@@ -45,6 +46,7 @@ typedef struct s_vars {
 	void	*pd_img;
 	void	*pl_img;
 	void	*pr_img;
+
 	int		p_x;
 	int		p_y;
 	int		p_check;

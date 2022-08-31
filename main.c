@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/30 14:34:58 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/31 15:51:31 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int	main(int ac, char **av)
 		malloc_map(av[1], &vars);
 		check_mapsize_chars(&vars);
 		vars.win = mlx_new_window(vars.mlx, vars.map_x * 64,
-				vars.map_y * 64, "so_long");
+				vars.map_y * 64 + 50, "so_long");
 		check_walls(&vars);
 		print_bgwall(&vars);
 		print_staticimg(&vars);
