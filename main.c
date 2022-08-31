@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 16:27:21 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/31 22:31:34 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,12 @@ void	key_helper(int key, t_vars *vars)
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img,
 		vars->p_x * 64, vars->p_y * 64);
-	vars->m_count++;
+	// sleep(1);
+	// mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
+	// 	vars->p_x * 64, vars->p_y * 64);
+	// mlx_put_image_to_window(vars->mlx, vars->win, vars->psleep_img,
+	// 	vars->p_x * 64, vars->p_y * 64);
+	ft_printf("Movement Count: %d\n", ++vars->m_count);
 }
 
 int	key_loop(int key, t_vars *vars)
@@ -89,6 +94,12 @@ void	malloc_map(char *av, t_vars *vars)
 	free(buf);
 }
 
+int	loop_hook(t_vars *vars)
+{
+	exit_condition(vars);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_vars	vars;
@@ -105,7 +116,7 @@ int	main(int ac, char **av)
 		check_walls(&vars);
 		print_bgwall(&vars);
 		print_staticimg(&vars);
-		mlx_loop_hook(vars.mlx, exit_condition, &vars);
+		mlx_loop_hook(vars.mlx, loop_hook, &vars);
 		mlx_key_hook(vars.win, key_loop, &vars);
 		mlx_hook(vars.win, 17, 0, terminate, &vars);
 		mlx_loop(vars.mlx);

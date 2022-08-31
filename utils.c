@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 16:36:47 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/31 22:30:17 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ void	print_staticimg(t_vars *vars)
 	}
 }
 
-int	exit_condition(t_vars *vars)
+void	exit_condition(t_vars *vars)
 {
 	while (vars->bar <= vars->map_x)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bar_img,
@@ -139,5 +139,4 @@ int	exit_condition(t_vars *vars)
 		terminate(vars, "Victory!");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img,
 		vars->exit_x * 64, vars->exit_y * 64);
-	return (0);
 }
