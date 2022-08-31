@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 15:51:31 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/31 16:27:21 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,31 @@ void	key_helper(int key, t_vars *vars)
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
 		vars->p_x * 64, vars->p_y * 64);
 	if (key == W)
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->pu_img,
-			vars->p_x * 64, --vars->p_y * 64);
+	{
+		vars->p_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachuw.xpm",
+				&vars->img_width, &vars->img_height);
+		--vars->p_y;
+	}
 	if (key == A)
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->pl_img,
-			--vars->p_x * 64, vars->p_y * 64);
+	{
+		vars->p_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachua.xpm",
+				&vars->img_width, &vars->img_height);
+		--vars->p_x;
+	}
 	if (key == S)
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->pd_img,
-			vars->p_x * 64, ++vars->p_y * 64);
+	{
+		vars->p_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachus.xpm",
+				&vars->img_width, &vars->img_height);
+		++vars->p_y;
+	}
 	if (key == D)
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->pr_img,
-			++vars->p_x * 64, vars->p_y * 64);
+	{	
+		vars->p_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachud.xpm",
+				&vars->img_width, &vars->img_height);
+		++vars->p_x;
+	}
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img,
+		vars->p_x * 64, vars->p_y * 64);
 	vars->m_count++;
 }
 

@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 15:37:32 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/31 16:36:47 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	check_mapsize_chars(t_vars *vars)
 		{
 			if (vars->map[vars->map_y][vars->map_x] == '0' ||
 				vars->map[vars->map_y][vars->map_x] == '1' ||
+				vars->map[vars->map_y][vars->map_x] == 'X' ||
 				vars->map[vars->map_y][vars->map_x] == 'C')
 					vars->m_count = 0;
 			else if (vars->map[vars->map_y][vars->map_x] == 'P')
@@ -104,7 +105,7 @@ void	print_staticimg(t_vars *vars)
 			{
 				vars->p_x = vars->xx;
 				vars->p_y = vars->yy;
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->pd_img,
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->psleep_img,
 					vars->p_x * 64, vars->p_y * 64);
 			}
 			else if (vars->map[vars->yy][vars->xx] == 'C')

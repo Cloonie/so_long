@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 15:54:11 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/31 16:22:55 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,11 @@ typedef struct s_vars {
 	int		map_x;
 	int		map_y;
 
-	void	*pu_img;
-	void	*pd_img;
-	void	*pl_img;
-	void	*pr_img;
+	void	*p_img;
+	// void	*pa_img;
+	// void	*ps_img;
+	// void	*pd_img;
+	void	*psleep_img;
 
 	int		p_x;
 	int		p_y;

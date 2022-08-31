@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 15:54:05 by mliew            ###   ########.fr       */
+/*   Updated: 2022/08/31 16:23:11 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,16 @@ void	init_xpm(t_vars *vars)
 {
 	vars->bg_img = mlx_xpm_file_to_image(vars->mlx, "sprites/background.xpm",
 			&vars->img_width, &vars->img_height);
-	vars->pu_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachuw.xpm",
+	vars->psleep_img = mlx_xpm_file_to_image(vars->mlx, "sprites/psleep.xpm",
 			&vars->img_width, &vars->img_height);
-	vars->pd_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachus.xpm",
-			&vars->img_width, &vars->img_height);
-	vars->pl_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachua.xpm",
-			&vars->img_width, &vars->img_height);
-	vars->pr_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachud.xpm",
-			&vars->img_width, &vars->img_height);
+	// vars->pw_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachuw.xpm",
+	// 		&vars->img_width, &vars->img_height);
+	// vars->pa_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachua.xpm",
+	// 		&vars->img_width, &vars->img_height);
+	// vars->ps_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachus.xpm",
+	// 		&vars->img_width, &vars->img_height);
+	// vars->pd_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachud.xpm",
+	// 		&vars->img_width, &vars->img_height);
 	vars->wall_img = mlx_xpm_file_to_image(vars->mlx, "sprites/tree.xpm",
 			&vars->img_width, &vars->img_height);
 	vars->col_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pokeball.xpm",
