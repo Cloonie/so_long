@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 17:20:59 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 18:47:28 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	init_xpm1(t_vars *vars)
 
 void	init_xpm2(t_vars *vars)
 {
-	vars->p_img.sleep.one = mlx_xpm_file_to_image(vars->mlx,
-			"sprites/psleep.xpm", &vars->img_size, &vars->img_size);
+	vars->p_img.sleep.two = mlx_xpm_file_to_image(vars->mlx,
+			"sprites/psleep2.xpm", &vars->img_size, &vars->img_size);
 	vars->p_img.up.two = mlx_xpm_file_to_image(vars->mlx,
 			"sprites/pikachuw2.xpm", &vars->img_size, &vars->img_size);
 	vars->p_img.down.two = mlx_xpm_file_to_image(vars->mlx,
@@ -59,6 +59,7 @@ void	init_vars(t_vars *vars)
 	init_xpm1(vars);
 	init_xpm2(vars);
 	init_xpm_others(vars);
+	vars->current_img = vars->p_img.sleep.one;
 	vars->img_size = SIZE;
 	vars->map_x = 0;
 	vars->map_y = 0;

@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 17:33:58 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 19:02:05 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # define S 1
 # define D 2
 # define SIZE 64
-# define FRAMES 10
+# define FRAMES 20
 
 typedef struct player_animation {
 	void	*one;
@@ -57,6 +57,8 @@ typedef struct s_vars {
 	int		map_y;
 
 	t_move	p_img;
+	void	*current_img;
+	int		frame;
 
 	int		p_x;
 	int		p_y;
@@ -89,5 +91,6 @@ void	exit_condition(t_vars *vars);
 void	key_helper(int key, t_vars *vars);
 int		key_loop(int key, t_vars *vars);
 int		terminate(t_vars *vars, char *msg);
+void	player_animation(t_vars *vars);
 
 #endif

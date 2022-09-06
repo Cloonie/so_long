@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 18:05:38 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 18:42:30 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,22 @@ void	key_helper(int key, t_vars *vars)
 	if (key == W)
 	{
 		--vars->p_y;
+		vars->current_img = vars->p_img.up.one;
 	}
 	if (key == A)
 	{
 		--vars->p_x;
+		vars->current_img = vars->p_img.left.one;
 	}
 	if (key == S)
 	{
 		++vars->p_y;
+		vars->current_img = vars->p_img.down.one;
 	}
 	if (key == D)
 	{	
 		++vars->p_x;
+		vars->current_img = vars->p_img.right.one;
 	}
 	ft_printf("Movement Count: %d\n", ++vars->m_count);
 }
@@ -66,20 +70,7 @@ void	malloc_map(char *av, t_vars *vars)
 
 int	loop_hook(t_vars *vars)
 {
-	static int	frame;
-	void		*img;
-
-	img = 0;
-	frame++;
-	if (frame == FRAMES)
-		vars->p_y -= 1;
-	else if (frame >= FRAMES * 2)
-	{
-		vars->p_y -= 1;
-		frame = 0;
-	}
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.sleep.one,
-		vars->p_x * 64, vars->p_y * 64);
+	player_animation(vars);
 	exit_condition(vars);
 	return (0);
 }
