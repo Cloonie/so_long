@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 18:47:28 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 22:10:11 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,13 @@ void	init_xpm_others(t_vars *vars)
 			&vars->img_size, &vars->img_size);
 	vars->bar_img = mlx_xpm_file_to_image(vars->mlx, "sprites/whitebg.xpm",
 			&vars->img_size, &vars->img_size);
+	vars->enemy_img = mlx_xpm_file_to_image(vars->mlx, "sprites/enemy.xpm",
+			&vars->img_size, &vars->img_size);
 }
 
 void	init_vars(t_vars *vars)
 {
+	vars->mlx = mlx_init();
 	init_xpm1(vars);
 	init_xpm2(vars);
 	init_xpm_others(vars);
@@ -67,6 +70,10 @@ void	init_vars(t_vars *vars)
 	vars->col_collect = 0;
 	vars->xx = 0;
 	vars->yy = 0;
+	vars->h_x = 0;
+	vars->h_y = 0;
+	vars->v_x = 0;
+	vars->v_y = 0;
 	vars->p_check = 0;
 	vars->exit_check = 0;
 }

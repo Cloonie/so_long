@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 19:02:05 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 22:09:10 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,12 @@ typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 	int		img_size;
+
 	int		xx;
 	int		yy;
 	int		xend;
 	int		yend;
+
 	int		bar;
 	void	*bar_img;
 
@@ -59,11 +61,16 @@ typedef struct s_vars {
 	t_move	p_img;
 	void	*current_img;
 	int		frame;
-
 	int		p_x;
 	int		p_y;
 	int		p_check;
 	int		m_count;
+
+	void	*enemy_img;
+	int		h_x;
+	int		h_y;
+	int		v_x;
+	int		v_y;
 
 	void	*bg_img;
 	int		bg_x;
@@ -87,10 +94,13 @@ void	check_mapsize_chars(t_vars *vars);
 void	check_walls(t_vars *vars);
 void	print_bgwall(t_vars *vars);
 void	print_staticimg(t_vars *vars);
-void	exit_condition(t_vars *vars);
+
 void	key_helper(int key, t_vars *vars);
 int		key_loop(int key, t_vars *vars);
-int		terminate(t_vars *vars, char *msg);
+
 void	player_animation(t_vars *vars);
+void	movementcountbar(t_vars *vars);
+void	exit_condition(t_vars *vars);
+int		terminate(t_vars *vars, char *msg);
 
 #endif

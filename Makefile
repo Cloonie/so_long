@@ -6,7 +6,7 @@
 #    By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/08/11 15:21:36 by mliew             #+#    #+#              #
-#    Updated: 2022/09/06 18:42:15 by mliew            ###   ########.fr        #
+#    Updated: 2022/09/06 21:02:23 by mliew            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	=	so_long
 RM		=	rm -rf
 CC		=	gcc
 CFLAGS	=	-Wall -Wextra -Werror
-SRCS	=	main.c utils.c vars.c animation.c
+SRCS	=	main.c utils.c vars.c check.c print.c animation.c
 OBJS	=	$(SRCS:.c=.o)
 MLX		=	-lmlx -framework OpenGL -framework AppKit
 LIBFT	=	-Llibft -lft

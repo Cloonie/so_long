@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 18:42:30 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 22:09:44 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,13 @@ void	malloc_map(char *av, t_vars *vars)
 
 int	loop_hook(t_vars *vars)
 {
+	if (vars->h_x != 0 && vars->h_y != 0)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->enemy_img,
+			vars->h_x * 64, vars->h_y * 64);
+	if (vars->v_x != 0 && vars->v_y != 0)
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->enemy_img,
+			vars->v_x * 64, vars->v_y * 64);
+	movementcountbar(vars);
 	player_animation(vars);
 	exit_condition(vars);
 	return (0);
@@ -81,7 +88,6 @@ int	main(int ac, char **av)
 
 	if (ac == 2)
 	{
-		vars.mlx = mlx_init();
 		init_vars(&vars);
 		malloc_map(av[1], &vars);
 		check_mapsize_chars(&vars);

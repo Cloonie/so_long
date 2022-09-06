@@ -6,13 +6,13 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:35:00 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 19:01:02 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 20:19:32 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	ani_up(t_vars *vars)
+void	ani_updown(t_vars *vars)
 {
 	if (vars->current_img == vars->p_img.up.one
 		|| vars->current_img == vars->p_img.up.two)
@@ -25,10 +25,6 @@ void	ani_up(t_vars *vars)
 			vars->frame = 0;
 		}
 	}
-}
-
-void	ani_down(t_vars *vars)
-{
 	if (vars->current_img == vars->p_img.down.one
 		|| vars->current_img == vars->p_img.down.two)
 	{
@@ -42,7 +38,7 @@ void	ani_down(t_vars *vars)
 	}
 }
 
-void	ani_left(t_vars *vars)
+void	ani_leftright(t_vars *vars)
 {
 	if (vars->current_img == vars->p_img.left.one
 		|| vars->current_img == vars->p_img.left.two)
@@ -55,10 +51,6 @@ void	ani_left(t_vars *vars)
 			vars->frame = 0;
 		}
 	}
-}
-
-void	ani_right(t_vars *vars)
-{
 	if (vars->current_img == vars->p_img.right.one
 		|| vars->current_img == vars->p_img.right.two)
 	{
@@ -91,10 +83,8 @@ void	player_animation(t_vars *vars)
 		ani_sleep(vars);
 	else
 	{
-		ani_up(vars);
-		ani_down(vars);
-		ani_left(vars);
-		ani_right(vars);
+		ani_updown(vars);
+		ani_leftright(vars);
 	}
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
 		vars->p_x * 64, vars->p_y * 64);
