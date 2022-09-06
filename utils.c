@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 16:23:20 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 18:05:10 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,8 @@ void	print_staticimg(t_vars *vars)
 			{
 				vars->p_x = vars->xx;
 				vars->p_y = vars->yy;
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.sleep,
-					vars->p_x * 64, vars->p_y * 64);
+				mlx_put_image_to_window(vars->mlx, vars->win,
+					vars->p_img.sleep.one, vars->p_x * 64, vars->p_y * 64);
 			}
 			else if (vars->map[vars->yy][vars->xx] == 'C')
 			{
@@ -139,4 +139,19 @@ void	exit_condition(t_vars *vars)
 		terminate(vars, "Victory!");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img,
 		vars->exit_x * 64, vars->exit_y * 64);
+}
+
+int	terminate(t_vars *vars, char *msg)
+{
+	int	i;
+
+	i = 0;
+	(void)vars;
+	if (msg)
+		ft_printf("%s\n", msg);
+	while (vars->map[i])
+		free(vars->map[i++]);
+	free(vars->map);
+	// system("leaks so_long");
+	exit (0);
 }

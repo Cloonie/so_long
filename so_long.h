@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 16:15:19 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 17:33:58 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,20 @@
 # define S 1
 # define D 2
 # define SIZE 64
+# define FRAMES 10
 
-// typedef struct player_animation {
-// 	void	*one;
-// 	void	*two;
-// }	t_panimate;
+typedef struct player_animation {
+	void	*one;
+	void	*two;
+}	t_animation;
 
 typedef struct player_movement {
-	void	*up;
-	void	*down;
-	void	*left;
-	void	*right;
-	void	*sleep;
-}	t_pmove;
+	t_animation	up;
+	t_animation	down;
+	t_animation	left;
+	t_animation	right;
+	t_animation	sleep;
+}	t_move;
 
 typedef struct s_vars {
 	void	*mlx;
@@ -55,12 +56,7 @@ typedef struct s_vars {
 	int		map_x;
 	int		map_y;
 
-	t_pmove	p_img;
-	// void	*pw_img;
-	// void	*pa_img;
-	// void	*ps_img;
-	// void	*pd_img;
-	// void	*psleep_img;
+	t_move	p_img;
 
 	int		p_x;
 	int		p_y;
@@ -84,7 +80,6 @@ typedef struct s_vars {
 }	t_vars;
 
 void	init_vars(t_vars *vars);
-void	init_xpm(t_vars *vars);
 void	malloc_map(char *av, t_vars *vars);
 void	check_mapsize_chars(t_vars *vars);
 void	check_walls(t_vars *vars);

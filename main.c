@@ -6,26 +6,11 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 16:17:51 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 18:05:38 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-int	terminate(t_vars *vars, char *msg)
-{
-	int	i;
-
-	i = 0;
-	(void)vars;
-	if (msg)
-		ft_printf("%s\n", msg);
-	while (vars->map[i])
-		free(vars->map[i++]);
-	free(vars->map);
-	// system("leaks so_long");
-	exit (0);
-}
 
 void	key_helper(int key, t_vars *vars)
 {
@@ -33,23 +18,19 @@ void	key_helper(int key, t_vars *vars)
 		vars->p_x * 64, vars->p_y * 64);
 	if (key == W)
 	{
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.up,
-			vars->p_x * 64, --vars->p_y * 64);
+		--vars->p_y;
 	}
 	if (key == A)
 	{
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.left,
-			--vars->p_x * 64, vars->p_y * 64);
+		--vars->p_x;
 	}
 	if (key == S)
 	{
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.down,
-			vars->p_x * 64, ++vars->p_y * 64);
+		++vars->p_y;
 	}
 	if (key == D)
 	{	
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.right,
-			++vars->p_x * 64, vars->p_y * 64);
+		++vars->p_x;
 	}
 	ft_printf("Movement Count: %d\n", ++vars->m_count);
 }
@@ -85,6 +66,20 @@ void	malloc_map(char *av, t_vars *vars)
 
 int	loop_hook(t_vars *vars)
 {
+	static int	frame;
+	void		*img;
+
+	img = 0;
+	frame++;
+	if (frame == FRAMES)
+		vars->p_y -= 1;
+	else if (frame >= FRAMES * 2)
+	{
+		vars->p_y -= 1;
+		frame = 0;
+	}
+	mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.sleep.one,
+		vars->p_x * 64, vars->p_y * 64);
 	exit_condition(vars);
 	return (0);
 }
@@ -97,7 +92,6 @@ int	main(int ac, char **av)
 	{
 		vars.mlx = mlx_init();
 		init_vars(&vars);
-		init_xpm(&vars);
 		malloc_map(av[1], &vars);
 		check_mapsize_chars(&vars);
 		vars.win = mlx_new_window(vars.mlx, vars.map_x * 64,
