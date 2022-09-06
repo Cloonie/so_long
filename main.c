@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 22:31:34 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 16:17:51 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,35 +33,24 @@ void	key_helper(int key, t_vars *vars)
 		vars->p_x * 64, vars->p_y * 64);
 	if (key == W)
 	{
-		vars->p_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachuw.xpm",
-				&vars->img_width, &vars->img_height);
-		--vars->p_y;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.up,
+			vars->p_x * 64, --vars->p_y * 64);
 	}
 	if (key == A)
 	{
-		vars->p_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachua.xpm",
-				&vars->img_width, &vars->img_height);
-		--vars->p_x;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.left,
+			--vars->p_x * 64, vars->p_y * 64);
 	}
 	if (key == S)
 	{
-		vars->p_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachus.xpm",
-				&vars->img_width, &vars->img_height);
-		++vars->p_y;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.down,
+			vars->p_x * 64, ++vars->p_y * 64);
 	}
 	if (key == D)
 	{	
-		vars->p_img = mlx_xpm_file_to_image(vars->mlx, "sprites/pikachud.xpm",
-				&vars->img_width, &vars->img_height);
-		++vars->p_x;
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.right,
+			++vars->p_x * 64, vars->p_y * 64);
 	}
-	mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img,
-		vars->p_x * 64, vars->p_y * 64);
-	// sleep(1);
-	// mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
-	// 	vars->p_x * 64, vars->p_y * 64);
-	// mlx_put_image_to_window(vars->mlx, vars->win, vars->psleep_img,
-	// 	vars->p_x * 64, vars->p_y * 64);
 	ft_printf("Movement Count: %d\n", ++vars->m_count);
 }
 

@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 22:30:28 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 16:15:19 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,25 @@
 # define A 0
 # define S 1
 # define D 2
+# define SIZE 64
+
+// typedef struct player_animation {
+// 	void	*one;
+// 	void	*two;
+// }	t_panimate;
+
+typedef struct player_movement {
+	void	*up;
+	void	*down;
+	void	*left;
+	void	*right;
+	void	*sleep;
+}	t_pmove;
 
 typedef struct s_vars {
 	void	*mlx;
 	void	*win;
-	int		img_width;
-	int		img_height;
+	int		img_size;
 	int		xx;
 	int		yy;
 	int		xend;
@@ -42,11 +55,12 @@ typedef struct s_vars {
 	int		map_x;
 	int		map_y;
 
-	void	*p_img;
+	t_pmove	p_img;
+	// void	*pw_img;
 	// void	*pa_img;
 	// void	*ps_img;
 	// void	*pd_img;
-	void	*psleep_img;
+	// void	*psleep_img;
 
 	int		p_x;
 	int		p_y;

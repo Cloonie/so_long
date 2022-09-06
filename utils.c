@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/31 22:30:17 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/06 16:23:20 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	print_staticimg(t_vars *vars)
 			{
 				vars->p_x = vars->xx;
 				vars->p_y = vars->yy;
-				mlx_put_image_to_window(vars->mlx, vars->win, vars->psleep_img,
+				mlx_put_image_to_window(vars->mlx, vars->win, vars->p_img.sleep,
 					vars->p_x * 64, vars->p_y * 64);
 			}
 			else if (vars->map[vars->yy][vars->xx] == 'C')
