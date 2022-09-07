@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 18:35:00 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/07 11:41:55 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/07 21:05:56 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	ani_sleep(t_vars *vars)
 	}
 }
 
-void	player_animation(t_vars *vars)
+void	animation(t_vars *vars)
 {
 	vars->frame++;
 	if (vars->current_img == vars->p_img.sleep.one

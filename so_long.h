@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/07 11:40:37 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/07 21:59:54 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_vars {
 	int		m_count;
 
 	void	*enemy_img;
+	int		enemy_frame;
 	int		h_x;
 	int		h_y;
 	int		v_x;
@@ -98,11 +99,11 @@ void	print_staticimg(t_vars *vars);
 void	key_helper(int key, t_vars *vars);
 int		key_loop(int key, t_vars *vars);
 
-void	player_animation(t_vars *vars);
+void	animation(t_vars *vars);
 void	movementcountbar(t_vars *vars);
 void	exit_condition(t_vars *vars);
-void	player_enemy(t_vars *vars);
-void	enemy_movement(t_vars *vars);
+void	enemy_movementv(t_vars *vars);
+void	enemy_movementh(t_vars *vars);
 int		terminate(t_vars *vars, char *msg);
 
 #endif

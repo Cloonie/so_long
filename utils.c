@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:00:22 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/07 11:40:29 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/07 22:05:00 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,31 +34,52 @@ void	exit_condition(t_vars *vars)
 		terminate(vars, "Victory!");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img,
 		vars->exit_x * 64, vars->exit_y * 64);
+	vars->enemy_frame++;
+	enemy_movementv(vars);
+	enemy_movementh(vars);
 }
 
-void	enemy_movement(t_vars *vars)
+void	enemy_movementv(t_vars *vars)
 {
-	if (vars->h_x != 0 && vars->h_y != 0)
-	{
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
-			vars->v_x * 64, vars->v_y * 64);
-		mlx_put_image_to_window(vars->mlx, vars->win, vars->enemy_img,
-			vars->h_x * 64, vars->h_y * 64);
-	}
 	if (vars->v_x != 0 && vars->v_y != 0)
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
 			vars->v_x * 64, vars->v_y * 64);
+		if (vars->map[vars->v_y + 1][vars->v_x] != '1'
+			&& vars->enemy_frame == 200)
+			vars->v_y += 1;
+		else if (vars->map[vars->v_y - 1][vars->v_x] != '1'
+			&& vars->enemy_frame >= 200 * 2)
+		{
+			vars->v_y -= 1;
+			vars->enemy_frame = 0;
+		}
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->enemy_img,
 			vars->v_x * 64, vars->v_y * 64);
 	}
+	if (vars->p_y == vars->v_y && vars->p_x == vars->v_x)
+		terminate(vars, "Defeat!\nPlayer killed by Enemy.");
 }
 
-void	player_enemy(t_vars *vars)
+void	enemy_movementh(t_vars *vars)
 {
+	if (vars->h_x != 0 && vars->h_y != 0)
+	{
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
+			vars->h_x * 64, vars->h_y * 64);
+		if (vars->map[vars->h_y][vars->h_x + 1] != '1'
+			&& vars->enemy_frame == 200)
+			vars->h_x += 1;
+		else if (vars->map[vars->h_y][vars->h_x - 1] != '1'
+			&& vars->enemy_frame >= 200 * 2)
+		{
+			vars->h_x -= 1;
+			vars->enemy_frame = 0;
+		}
+		mlx_put_image_to_window(vars->mlx, vars->win, vars->enemy_img,
+			vars->h_x * 64, vars->h_y * 64);
+	}
 	if (vars->p_y == vars->h_y && vars->p_x == vars->h_x)
-		terminate(vars, "Defeat!\nPlayer killed by Enemy.");
-	if (vars->p_y == vars->v_y && vars->p_x == vars->v_x)
 		terminate(vars, "Defeat!\nPlayer killed by Enemy.");
 }
 

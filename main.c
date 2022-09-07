@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/07 11:40:44 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/07 22:04:38 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,8 @@ void	malloc_map(char *av, t_vars *vars)
 
 int	loop_hook(t_vars *vars)
 {
-	enemy_movement(vars);
-	player_enemy(vars);
 	movementcountbar(vars);
-	player_animation(vars);
+	animation(vars);
 	exit_condition(vars);
 	return (0);
 }
