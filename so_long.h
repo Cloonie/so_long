@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/06 22:09:10 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/07 11:40:37 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,8 @@ int		key_loop(int key, t_vars *vars);
 void	player_animation(t_vars *vars);
 void	movementcountbar(t_vars *vars);
 void	exit_condition(t_vars *vars);
+void	player_enemy(t_vars *vars);
+void	enemy_movement(t_vars *vars);
 int		terminate(t_vars *vars, char *msg);
 
 #endif
