@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/07 22:04:38 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/08 22:07:00 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	malloc_map(char *av, t_vars *vars)
 
 int	loop_hook(t_vars *vars)
 {
+	print_imgs(vars);
 	movementcountbar(vars);
 	animation(vars);
 	exit_condition(vars);
@@ -88,8 +89,7 @@ int	main(int ac, char **av)
 		vars.win = mlx_new_window(vars.mlx, vars.map_x * 64,
 				vars.map_y * 64 + 50, "so_long");
 		check_walls(&vars);
-		print_bgwall(&vars);
-		print_staticimg(&vars);
+		allocate_pos(&vars);
 		mlx_loop_hook(vars.mlx, loop_hook, &vars);
 		mlx_key_hook(vars.win, key_loop, &vars);
 		mlx_hook(vars.win, 17, 0, terminate, &vars);

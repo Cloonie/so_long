@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:00:22 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/07 22:05:00 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/08 21:53:00 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,20 @@
 
 void	movementcountbar(t_vars *vars)
 {
+	char	*ncount;
+	char	*mcount;
+
+	ncount = ft_itoa(vars->m_count);
+	mcount = ft_strjoin("Movement Count: ", ncount);
 	while (vars->bar <= vars->map_x)
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bar_img,
 			vars->bar++ *64, vars->map_y * 64);
-	vars->bar = 0;
+	if (vars->bar != 0)
+		vars->bar = 0;
 	mlx_string_put(vars->mlx, vars->win, 25, vars->map_y * 64 + 15, 0,
-		ft_strjoin("Movement Count: ", ft_itoa(vars->m_count)));
+		mcount);
+	free(mcount);
+	free(ncount);
 }
 
 void	exit_condition(t_vars *vars)
@@ -34,25 +42,25 @@ void	exit_condition(t_vars *vars)
 		terminate(vars, "Victory!");
 	mlx_put_image_to_window(vars->mlx, vars->win, vars->exit_img,
 		vars->exit_x * 64, vars->exit_y * 64);
-	vars->enemy_frame++;
 	enemy_movementv(vars);
 	enemy_movementh(vars);
 }
 
 void	enemy_movementv(t_vars *vars)
 {
+	vars->enemy_framev++;
 	if (vars->v_x != 0 && vars->v_y != 0)
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
 			vars->v_x * 64, vars->v_y * 64);
 		if (vars->map[vars->v_y + 1][vars->v_x] != '1'
-			&& vars->enemy_frame == 200)
+			&& vars->enemy_framev == 110)
 			vars->v_y += 1;
 		else if (vars->map[vars->v_y - 1][vars->v_x] != '1'
-			&& vars->enemy_frame >= 200 * 2)
+			&& vars->enemy_framev >= 120 * 2)
 		{
 			vars->v_y -= 1;
-			vars->enemy_frame = 0;
+			vars->enemy_framev = 0;
 		}
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->enemy_img,
 			vars->v_x * 64, vars->v_y * 64);
@@ -63,18 +71,19 @@ void	enemy_movementv(t_vars *vars)
 
 void	enemy_movementh(t_vars *vars)
 {
+	vars->enemy_frameh++;
 	if (vars->h_x != 0 && vars->h_y != 0)
 	{
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->bg_img,
 			vars->h_x * 64, vars->h_y * 64);
 		if (vars->map[vars->h_y][vars->h_x + 1] != '1'
-			&& vars->enemy_frame == 200)
+			&& vars->enemy_frameh == 100)
 			vars->h_x += 1;
 		else if (vars->map[vars->h_y][vars->h_x - 1] != '1'
-			&& vars->enemy_frame >= 200 * 2)
+			&& vars->enemy_frameh >= 110 * 2)
 		{
 			vars->h_x -= 1;
-			vars->enemy_frame = 0;
+			vars->enemy_frameh = 0;
 		}
 		mlx_put_image_to_window(vars->mlx, vars->win, vars->enemy_img,
 			vars->h_x * 64, vars->h_y * 64);
@@ -94,6 +103,6 @@ int	terminate(t_vars *vars, char *msg)
 	while (vars->map[i])
 		free(vars->map[i++]);
 	free(vars->map);
-	// system("leaks so_long");
+	system("leaks so_long");
 	exit (0);
 }

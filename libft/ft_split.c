@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:43:33 by mliew             #+#    #+#             */
-/*   Updated: 2022/08/16 18:21:23 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/08 22:09:14 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,9 @@ static void	split_words(char **array, const char *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
+	int		i;
 
+	i = 0;
 	if (!s)
 		return (NULL);
 	array = malloc((count_words(s, c) + 1) * sizeof(char *));
