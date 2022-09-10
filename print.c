@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 20:59:41 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/08 21:08:28 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/10 15:39:04 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,32 @@ void	print_imgs(t_vars *vars)
 	}
 }
 
+void	allocatepos_helper(t_vars *vars)
+{
+	if (vars->map[vars->yy][vars->xx] == 'P')
+	{
+		vars->p_x = vars->xx;
+		vars->p_y = vars->yy;
+	}
+	if (vars->map[vars->yy][vars->xx] == 'H')
+	{
+		vars->h_x = vars->xx;
+		vars->h_y = vars->yy;
+	}
+	if (vars->map[vars->yy][vars->xx] == 'V')
+	{
+		vars->v_x = vars->xx;
+		vars->v_y = vars->yy;
+	}
+	if (vars->map[vars->yy][vars->xx] == 'E')
+	{
+		vars->exit_y = vars->yy;
+		vars->exit_x = vars->xx;
+	}
+	if (vars->map[vars->yy][vars->xx] == 'C')
+		vars->col_count++;
+}
+
 void	allocate_pos(t_vars *vars)
 {
 	vars->xx = 0;
@@ -53,28 +79,7 @@ void	allocate_pos(t_vars *vars)
 	{
 		while (vars->map[vars->yy][vars->xx])
 		{
-			if (vars->map[vars->yy][vars->xx] == 'P')
-			{
-				vars->p_x = vars->xx;
-				vars->p_y = vars->yy;
-			}
-			if (vars->map[vars->yy][vars->xx] == 'H')
-			{
-				vars->h_x = vars->xx;
-				vars->h_y = vars->yy;
-			}
-			if (vars->map[vars->yy][vars->xx] == 'V')
-			{
-				vars->v_x = vars->xx;
-				vars->v_y = vars->yy;
-			}
-			if (vars->map[vars->yy][vars->xx] == 'E')
-			{
-				vars->exit_y = vars->yy;
-				vars->exit_x = vars->xx;
-			}
-			if (vars->map[vars->yy][vars->xx] == 'C')
-				vars->col_count++;
+			allocatepos_helper(vars);
 			vars->xx++;
 		}
 		vars->xx = 0;

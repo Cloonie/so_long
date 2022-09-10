@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/08 13:50:29 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/10 15:22:05 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ typedef struct s_vars {
 	int		h_y;
 	int		v_x;
 	int		v_y;
+	int		h_check;
+	int		v_check;
 
 	void	*bg_img;
 	int		bg_x;
