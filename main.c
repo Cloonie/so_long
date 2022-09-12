@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/12 17:59:38 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/12 21:33:30 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ void	malloc_map(char *av, t_vars *vars)
 	buf = malloc(sizeof(char) * 1000);
 	i = read(fd, buf, 1000);
 	buf[i] = '\0';
+	if (buf[0] == '\n' || buf[i - 1] == '\n' || ft_strnstr(buf, "\n\n", 1000))
+		exit_nofree("Error\nMap not rectangular.");
 	vars->map = ft_split(buf, '\n');
 	vars->flood = ft_split(buf, '\n');
 	if (vars->map[0][0] == '\n')

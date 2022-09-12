@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/12 18:50:11 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/12 21:32:07 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,9 +97,6 @@ void	flood(int y, int x, t_vars *vars)
 void	check_validpath(t_vars *vars)
 {
 	flood(vars->p_y, vars->p_x, vars);
-	int i = 0;
-	while (vars->map[i])
-		printf("%s\n", vars->map[i++]);
 	vars->xx = 0;
 	vars->yy = 0;
 	while (vars->flood[vars->yy])
