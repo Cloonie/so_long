@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/10 15:26:34 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/12 18:50:11 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	check_mapsize_chars(t_vars *vars)
 		}
 		vars->map_y++;
 	}
+	if (vars->m_count != 0)
+		terminate(vars, "Error\nMap empty.");
 	if (vars->p_check != 1)
 		terminate(vars, "Error\nPlayer not found or has duplicate.");
 	if (vars->exit_check != 1)
@@ -73,6 +75,43 @@ void	check_walls(t_vars *vars)
 		if ((vars->xx == vars->xend) && (vars->yy == vars->yend))
 			break ;
 		vars->xx++;
+		vars->yy++;
+	}
+}
+
+void	flood(int y, int x, t_vars *vars)
+{
+	if (vars->flood[y][x] == '0'
+		|| vars->flood[y][x] == 'C'
+		|| vars->flood[y][x] == 'P'
+		|| vars->flood[y][x] == 'E')
+	{
+		vars->flood[y][x] = 'F';
+		flood(y + 1, x, vars);
+		flood(y - 1, x, vars);
+		flood(y, x + 1, vars);
+		flood(y, x - 1, vars);
+	}
+}
+
+void	check_validpath(t_vars *vars)
+{
+	flood(vars->p_y, vars->p_x, vars);
+	int i = 0;
+	while (vars->map[i])
+		printf("%s\n", vars->map[i++]);
+	vars->xx = 0;
+	vars->yy = 0;
+	while (vars->flood[vars->yy])
+	{
+		while (vars->flood[vars->yy][vars->xx])
+		{
+			if (vars->flood[vars->yy][vars->xx] == 'C'
+				|| vars->flood[vars->yy][vars->xx] == 'E')
+				terminate(vars, "Error\nNo Valid Path to Exit");
+			vars->xx++;
+		}
+		vars->xx = 0;
 		vars->yy++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/10 15:24:08 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/12 16:40:40 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,11 @@ void	init_vars(t_vars *vars)
 	vars->v_check = 0;
 	vars->enemy_framev = 0;
 	vars->enemy_frameh = 0;
+}
+
+void	exit_nofree(char *msg)
+{
+	if (msg)
+		ft_printf("%s\n", msg);
+	exit (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/10 15:19:38 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/12 17:59:38 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,19 @@ void	malloc_map(char *av, t_vars *vars)
 	int		i;
 
 	fd = open(av, O_RDONLY);
+	if (fd <= 0)
+		exit_nofree("Error\nInvalid map file.");
+	if (!ft_strchr(av, '.'))
+		exit_nofree("Error\nMap file no '.ber'.");
+	if (ft_strncmp(ft_strchr(av, '.'), ".ber", 5))
+		exit_nofree("Error\nMap file type not '.ber'.");
 	buf = malloc(sizeof(char) * 1000);
 	i = read(fd, buf, 1000);
 	buf[i] = '\0';
 	vars->map = ft_split(buf, '\n');
+	vars->flood = ft_split(buf, '\n');
+	if (vars->map[0][0] == '\n')
+		exit(0);
 	free(buf);
 }
 
@@ -90,6 +99,7 @@ int	main(int ac, char **av)
 				vars.map_y * 64 + 50, "so_long");
 		check_walls(&vars);
 		allocate_pos(&vars);
+		check_validpath(&vars);
 		mlx_loop_hook(vars.mlx, loop_hook, &vars);
 		mlx_key_hook(vars.win, key_loop, &vars);
 		mlx_hook(vars.win, 17, 0, terminate, &vars);

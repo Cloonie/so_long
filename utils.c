@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:00:22 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/10 15:17:22 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/12 16:40:52 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,10 @@ int	terminate(t_vars *vars, char *msg)
 	int	i;
 
 	i = 0;
-	(void)vars;
 	if (msg)
 		ft_printf("%s\n", msg);
 	while (vars->map[i])
 		free(vars->map[i++]);
 	free(vars->map);
-	// system("leaks so_long");
 	exit (0);
 }

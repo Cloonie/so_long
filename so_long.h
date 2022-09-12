@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/10 15:22:05 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/12 16:30:16 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ typedef struct s_vars {
 	int		map_x;
 	int		map_y;
 
+	char	**flood;
+
 	t_move	p_img;
 	void	*current_img;
 	int		frame;
@@ -95,7 +97,9 @@ typedef struct s_vars {
 void	init_vars(t_vars *vars);
 void	malloc_map(char *av, t_vars *vars);
 void	check_mapsize_chars(t_vars *vars);
+void	check_validpath(t_vars *vars);
 void	check_walls(t_vars *vars);
+void	flood(int x, int y, t_vars *vars);
 void	print_imgs(t_vars *vars);
 void	allocate_pos(t_vars *vars);
 
@@ -107,6 +111,8 @@ void	movementcountbar(t_vars *vars);
 void	exit_condition(t_vars *vars);
 void	enemy_movementv(t_vars *vars);
 void	enemy_movementh(t_vars *vars);
+
 int		terminate(t_vars *vars, char *msg);
+void	exit_nofree(char *msg);
 
 #endif
