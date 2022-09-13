@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 17:27:38 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/13 14:04:30 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/13 16:18:43 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	init_vars(t_vars *vars)
 	init_xpm_others(vars);
 	vars->current_img = vars->p_img.sleep.one;
 	vars->img_size = SIZE;
+	vars->m_count = 0;
 	vars->map_x = 0;
 	vars->map_y = 0;
 	vars->col_count = 0;
@@ -78,6 +79,8 @@ void	init_vars(t_vars *vars)
 	vars->exit_check = 0;
 	vars->h_check = 0;
 	vars->v_check = 0;
+	vars->c_check = 0;
+	vars->frame = FRAMES;
 	vars->enemy_framev = 0;
 	vars->enemy_frameh = 0;
 }

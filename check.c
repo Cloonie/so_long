@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/13 13:33:06 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/13 17:10:52 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,14 @@
 void	check_map_helper(t_vars *vars)
 {
 	if (vars->map[vars->map_y][vars->map_x] == '0' ||
-		vars->map[vars->map_y][vars->map_x] == '1' ||
-		vars->map[vars->map_y][vars->map_x] == 'C')
+		vars->map[vars->map_y][vars->map_x] == '1')
 		vars->m_count = 0;
 	else if (vars->map[vars->map_y][vars->map_x] == 'P')
 		vars->p_check += 1;
 	else if (vars->map[vars->map_y][vars->map_x] == 'E')
 		vars->exit_check += 1;
+	else if (vars->map[vars->map_y][vars->map_x] == 'C')
+		vars->c_check += 1;
 	else if (vars->map[vars->map_y][vars->map_x] == 'H')
 		vars->h_check += 1;
 	else if (vars->map[vars->map_y][vars->map_x] == 'V')
@@ -32,6 +33,9 @@ void	check_map_helper(t_vars *vars)
 
 void	check_mapsize_chars(t_vars *vars)
 {
+	int	error;
+
+	error = 0;
 	while (vars->map[vars->map_y])
 	{
 		vars->map_x = 0;
@@ -42,12 +46,18 @@ void	check_mapsize_chars(t_vars *vars)
 		}
 		vars->map_y++;
 	}
-	if (vars->p_check != 1)
-		terminate(vars, "Error\nPlayer not found or has duplicate.");
-	if (vars->exit_check != 1)
-		terminate(vars, "Error\nExit not found or has duplicate.");
+	if (vars->p_check == 0 || vars->p_check > 1)
+		ft_printf("Player not found or has duplicate.\n");
+	if (vars->exit_check == 0 || vars->exit_check > 1)
+		ft_printf("Exit not found or has duplicate.\n");
+	if (vars->c_check < 1)
+		ft_printf("Collectable not found.\n");
 	if (vars->v_check > 1 || vars->h_check > 1)
-		terminate(vars, "Error\nEnemy Horizontal/Vertical has duplicate.");
+		ft_printf("Enemy Horizontal/Vertical has duplicate.\n");
+	if (vars->p_check == 0 || vars->p_check > 1 || vars->exit_check == 0
+		|| vars->exit_check > 1 || vars->c_check < 1
+		|| vars->v_check > 1 || vars->h_check > 1)
+		terminate(vars, "Error.");
 }
 
 void	check_walls(t_vars *vars)
@@ -104,7 +114,7 @@ void	check_validpath(t_vars *vars)
 		{
 			if (vars->flood[vars->yy][vars->xx] == 'C'
 				|| vars->flood[vars->yy][vars->xx] == 'E')
-				terminate(vars, "Error\nNo Valid Path to Exit");
+				terminate(vars, "Error\nNo valid path.");
 			vars->xx++;
 		}
 		vars->xx = 0;

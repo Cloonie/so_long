@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/06 21:00:22 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/13 13:35:40 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/13 16:58:19 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	movementcountbar(t_vars *vars)
 			vars->bar++ *64, vars->map_y * 64);
 	if (vars->bar != 0)
 		vars->bar = 0;
-	mlx_string_put(vars->mlx, vars->win, 25, vars->map_y * 64 + 15, 0,
+	mlx_string_put(vars->mlx, vars->win, 10, vars->map_y * 64 + 15, 0,
 		mcount);
 	free(mcount);
 	free(ncount);

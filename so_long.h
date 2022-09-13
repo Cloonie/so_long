@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/13 14:53:32 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/13 15:26:57 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ typedef struct s_vars {
 	void	*wall_img;
 
 	void	*col_img;
+	int		c_check;
 	int		col_count;
 	int		col_collect;
 
