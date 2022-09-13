@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/12 16:30:16 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/13 14:53:32 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # define D 2
 # define SIZE 64
 # define FRAMES 20
+# define RAM 32000
 
 typedef struct player_animation {
 	void	*one;

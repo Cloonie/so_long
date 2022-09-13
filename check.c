@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/12 21:32:07 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/13 13:33:06 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	check_mapsize_chars(t_vars *vars)
 		}
 		vars->map_y++;
 	}
-	if (vars->m_count != 0)
-		terminate(vars, "Error\nMap empty.");
 	if (vars->p_check != 1)
 		terminate(vars, "Error\nPlayer not found or has duplicate.");
 	if (vars->exit_check != 1)
@@ -61,20 +59,21 @@ void	check_walls(t_vars *vars)
 	vars->xend = vars->map_x - 1;
 	while (vars->map[vars->yy])
 	{
-		if (vars->map[0][vars->xx] != '1')
-			error++;
-		if (vars->map[vars->yend][vars->xx] != '1')
-			error++;
+		if (error > 0
+			|| ft_strlen(vars->map[0]) != ft_strlen(vars->map[vars->yend]))
+			terminate(vars, "Error\nWalls not surrounding map.");
+		while (vars->map[vars->yy][vars->xx])
+		{
+			if (vars->map[0][vars->xx] != '1')
+				error++;
+			if (vars->map[vars->yend][vars->xx] != '1')
+				error++;
+			vars->xx++;
+		}
 		if (vars->map[vars->yy][0] != '1')
 			error++;
 		if (vars->map[vars->yy][vars->xend] != '1')
 			error++;
-		if (error > 0
-			|| ft_strlen(vars->map[0]) != ft_strlen(vars->map[vars->yy]))
-			terminate(vars, "Error\nWalls not surrounding map.");
-		if ((vars->xx == vars->xend) && (vars->yy == vars->yend))
-			break ;
-		vars->xx++;
 		vars->yy++;
 	}
 }

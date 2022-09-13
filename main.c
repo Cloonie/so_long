@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/12 21:33:30 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/13 14:53:41 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void	malloc_map(char *av, t_vars *vars)
 	int		fd;
 	int		i;
 
+	i = 0;
 	fd = open(av, O_RDONLY);
 	if (fd <= 0)
 		exit_nofree("Error\nInvalid map file.");
@@ -67,9 +68,11 @@ void	malloc_map(char *av, t_vars *vars)
 		exit_nofree("Error\nMap file no '.ber'.");
 	if (ft_strncmp(ft_strchr(av, '.'), ".ber", 5))
 		exit_nofree("Error\nMap file type not '.ber'.");
-	buf = malloc(sizeof(char) * 1000);
-	i = read(fd, buf, 1000);
+	buf = malloc(sizeof(char) * RAM);
+	i = read(fd, buf, RAM);
 	buf[i] = '\0';
+	if (!buf[0])
+		exit_nofree("Error\nMap empty.");
 	if (buf[0] == '\n' || buf[i - 1] == '\n' || ft_strnstr(buf, "\n\n", 1000))
 		exit_nofree("Error\nMap not rectangular.");
 	vars->map = ft_split(buf, '\n');
