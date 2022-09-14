@@ -6,7 +6,7 @@
 /*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/11 12:16:45 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/13 14:53:41 by mliew            ###   ########.fr       */
+/*   Updated: 2022/09/14 20:51:51 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,10 @@ void	malloc_map(char *av, t_vars *vars)
 	fd = open(av, O_RDONLY);
 	if (fd <= 0)
 		exit_nofree("Error\nInvalid map file.");
-	if (!ft_strchr(av, '.'))
+	if (!ft_strnstr(av, ".ber", ft_strlen(av)))
 		exit_nofree("Error\nMap file no '.ber'.");
-	if (ft_strncmp(ft_strchr(av, '.'), ".ber", 5))
+	if (ft_strncmp((ft_strnstr(av, ".ber", ft_strlen(av))),
+			".ber", ft_strlen(av)))
 		exit_nofree("Error\nMap file type not '.ber'.");
 	buf = malloc(sizeof(char) * RAM);
 	i = read(fd, buf, RAM);
