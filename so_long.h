@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: mliew <mliew@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 18:15:29 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/13 15:26:57 by mliew            ###   ########.fr       */
+/*   Updated: 2023/09/16 15:59:22 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,23 @@
 # include "libft/libft.h"
 # include "ft_printf/ft_printf.h"
 
-# define ESC 53
-# define W 13
-# define A 0
-# define S 1
-# define D 2
+# ifdef __APPLE__
+// key_hook keycodes for mac //
+#  define ESC 53
+#  define W 13
+#  define A 0
+#  define S 1
+#  define D 2
+# else
+
+// key_hook keycodes for windows //
+#  define ESC 65307
+#  define W 119
+#  define A 97
+#  define S 115
+#  define D 100
+# endif
+
 # define SIZE 64
 # define FRAMES 20
 # define RAM 32000

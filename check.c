@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: mliew <mliew@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/17 15:49:13 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/14 15:12:40 by mliew            ###   ########.fr       */
+/*   Updated: 2023/09/16 15:57:34 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,6 @@ void	check_map_helper(t_vars *vars)
 
 void	check_mapsize_chars(t_vars *vars)
 {
-	int	error;
-
-	error = 0;
 	while (vars->map[vars->map_y])
 	{
 		vars->map_x = 0;

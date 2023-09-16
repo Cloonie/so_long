@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mliew < mliew@student.42kl.edu.my>         +#+  +:+       +#+        */
+/*   By: mliew <mliew@student.42kl.edu.my>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/27 10:43:33 by mliew             #+#    #+#             */
-/*   Updated: 2022/09/10 14:49:40 by mliew            ###   ########.fr       */
+/*   Updated: 2023/09/16 15:57:59 by mliew            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,7 @@ static void	split_words(char **array, const char *s, char c)
 char	**ft_split(char const *s, char c)
 {
 	char	**array;
-	int		i;
 
-	i = 0;
 	if (!s)
 		return (NULL);
 	array = malloc((count_words(s, c) + 1) * sizeof(char *));
